@@ -33,7 +33,7 @@ function kreirajDiv(imeDiv, rDiv){
 
 function tekstStil(txtNaziv){
 
-    txtNaziv.style.width = '40em';
+    txtNaziv.style.width = '50%';
     txtNaziv.style.border = '1px solid rgb(114,160,193)';
     txtNaziv.style.borderRadius = '10px';
     txtNaziv.style.margin = '0 auto 0 auto';
