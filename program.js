@@ -66,6 +66,7 @@ glavniDiv.appendChild(divMapa);
 divMapa.id = 'divMapaI';
 
 divStil(divMapa);
+divMapa.style.width = '95%';
 divMapa.style.height = '37em';
 divMapa.style.border = '2px dashed rgb(114,160,193)';
 divMapa.style.borderRadius = '20px';
