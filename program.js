@@ -7,7 +7,7 @@ document.body.style.padding = '0';
 document.body.style.textAlign = 'center';
 
 //glavniDiv - css
-glavniDiv.style.width = '80%';
+glavniDiv.style.width = '90%';
 glavniDiv.style.margin = '0 auto 0 auto';
 glavniDiv.style.border = '2px solid rgb(114,160,193)';
 glavniDiv.style.borderRadius = '30px';
@@ -66,7 +66,7 @@ glavniDiv.appendChild(divMapa);
 divMapa.id = 'divMapaI';
 
 divStil(divMapa);
-divMapa.style.width = '95%';
+divMapa.style.width = '90%';
 divMapa.style.height = '37em';
 divMapa.style.border = '2px dashed rgb(114,160,193)';
 divMapa.style.borderRadius = '20px';
