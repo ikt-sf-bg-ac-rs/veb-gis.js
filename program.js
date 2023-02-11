@@ -132,6 +132,10 @@ opcijePrikaza.forEach((item) => {
             podrazumevaniPrikaz();
             console.log('3d mapa');
             obavestenje3Dmapa();
+            
+            setTimeout(function(){
+                window.location.reload(true);
+            }, 3000);
 
         }
 
@@ -194,3 +198,4 @@ function obavestenje3Dmapa(){
 
 
 }
+
