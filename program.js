@@ -169,11 +169,16 @@ function prikaz2Dmape(){
 
 //ArcGIS 2D mapa:
 function mapa2D(){
-    require(["esri/config", "esri/Map", "esri/views/MapView"], function(esriConfig, Map, MapView){
+    require([
+    "esri/config", 
+    "esri/Map", 
+    "esri/views/MapView",
+], function(esriConfig, Map, MapView){
 
         esriConfig.apiKey = 'AAPK2ea63d879cc54628aca165f612c7c18eHL3sBlfMalg4D01a4F_HmA6xLn8REJCoLB0Musdq9kkarcQVu0cH8M9BFw8CjFmD';
+
         const map = new Map({
-            basemap: 'arcgis-topographic'
+            basemap: 'arcgis-topographic', 
         });
 
         const view = new MapView({
@@ -181,7 +186,10 @@ function mapa2D(){
             map: map,
             center: [20.457273, 44.797197], //longitude (geo. dužina), latitude (geo. širina) - Beograd [44.797197, 20.457273]
             zoom: 11,
-            container: 'divMapaI'
+            container: 'divMapaI', 
+            constraits: {
+                snapToZoom: false
+            }
 
         });
 
