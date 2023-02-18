@@ -57,7 +57,7 @@ glavniDiv.appendChild(divTekstMapa);
 divStil(divTekstMapa);
 
 let txtMapa = document.createElement('p');
-txtMapa.textContent = 'Mapa Beograda ';
+txtMapa.textContent = 'Opcije prikaza ';
 divTekstMapa.appendChild(txtMapa);
 tekstStil(txtMapa);
 
@@ -102,7 +102,7 @@ window.addEventListener('onload', function(){
 
 
 
-let opcijePrikaza = ["2D prikaz", "3D prikaz"];
+let opcijePrikaza = ["2D prikaz Beograda", "3D prikaz Beograda", "Prikaz zemljotresa"];
 opcijePrikaza.forEach((item) => {
 
     let odgovor;
@@ -117,17 +117,19 @@ opcijePrikaza.forEach((item) => {
     li.style.borderRadius = '10px';
     li.style.padding = '0.6em';
     li.style.margin = '0 auto 0 auto';
+    li.style.display = 'inline-block';
 
     li.addEventListener('click', function(){
 
-        if(li.textContent == "2D prikaz"){
+        if(li.textContent == "2D prikaz Beograda"){
 
             console.log('2d');
-            
+            //divMapaZemljotresi.style.display = 'none';
+            //divMapaZemljotresi.style.visibility = 'visible';
             prikaz2Dmape();
             mapa2D();
 
-        } else if(li.textContent == "3D prikaz"){
+        } else if(li.textContent == "3D prikaz Beograda"){
             
             podrazumevaniPrikaz();
             console.log('3d mapa');
@@ -137,11 +139,18 @@ opcijePrikaza.forEach((item) => {
                 window.location.reload(true);
             }, 3000);
 
+        } else if(li.textContent == "Prikaz zemljotresa"){
+
+            console.log('Zemljotresi magnitude veće ili jednake od 2.5 stepeni Rihterove skale u proteklih sedam dana. ');
+            //divMapaZemljotresi.style.visibility = 'visible';
+            //divMapa.style.display = 'none';
+            prikaz2Dmape();
+            zemljotresiF();
+
         }
 
     });
 });
-
 
 let divMapa = document.createElement('div');
 glavniDiv.appendChild(divMapa);
@@ -157,7 +166,6 @@ divMapa.style.borderRadius = '20px';
 */
 function prikaz2Dmape(){
 
-    //divMapa.style.display = 'block';
     divMapa.style.width = '90%';
     divMapa.style.height = '37em';
     divMapa.style.border = '2px dashed rgb(114,160,193)';
@@ -173,6 +181,7 @@ function mapa2D(){
     "esri/config", 
     "esri/Map", 
     "esri/views/MapView",
+    //"esri/layers/CSVlayer" ///CSVlayer
 ], function(esriConfig, Map, MapView){
 
         esriConfig.apiKey = 'AAPK2ea63d879cc54628aca165f612c7c18eHL3sBlfMalg4D01a4F_HmA6xLn8REJCoLB0Musdq9kkarcQVu0cH8M9BFw8CjFmD';
@@ -192,6 +201,50 @@ function mapa2D(){
             }
 
         });
+
+    });
+
+    /*const csvPodac = new CSVlayer({
+        url:
+    });
+    */
+    //map.add();
+}
+
+//prikazZemljotresa
+function zemljotresiF(){
+    require([
+        "esri/config",
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/layers/CSVLayer"
+    ], function(esriConfig, Map, MapView, CSVLayer){
+
+        esriConfig.apiKey = 'AAPK2ea63d879cc54628aca165f612c7c18eHL3sBlfMalg4D01a4F_HmA6xLn8REJCoLB0Musdq9kkarcQVu0cH8M9BFw8CjFmD';
+
+        const map = new Map({
+            basemap: 'arcgis-topographic',
+        });
+
+        const view = new MapView({
+
+            map: map,
+            center: [20.457273, 44.797197],
+            zoom: 3,
+            container: 'divMapaI',
+            constraits: {
+                snapToZoom: false
+            }
+
+        });
+
+        const csvPod = new CSVLayer({
+
+            url: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.csv',
+            copyright: 'USGS zemljotresi'
+
+        });
+        map.add(csvPod);
 
     });
 }
