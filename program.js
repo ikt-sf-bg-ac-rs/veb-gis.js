@@ -112,7 +112,7 @@ opcijePrikaza.forEach((item) => {
     divPrikaz.appendChild(li);
 
     li.style.listStyleType = 'none';
-    li.style.width = '20%';
+    li.style.width = '26%';
     li.style.border = '1px solid rgb(114,160,193)';
     li.style.borderRadius = '10px';
     li.style.padding = '0.6em';
